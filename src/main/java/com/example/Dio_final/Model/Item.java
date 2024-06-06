@@ -1,26 +1,36 @@
 package com.example.Dio_final.Model;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
 
 @Entity
+@Table(name = "items")
 public class Item {
-
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @Column(name = "nome", nullable = false)
     private String nome;
+
+    @Column(name = "descricao", nullable = false)
     private String descricao;
+
+    @Column(name = "quantidade", nullable = false)
     private int quantidade;
 
     @ManyToOne
+    @JoinColumn(name = "cliente_id")
     private Cliente cliente;
 
     @ManyToOne
+    @JoinColumn(name = "bibliotecario_id")
     private Bibliotecario bibliotecario;
 
     public Long getId() {
